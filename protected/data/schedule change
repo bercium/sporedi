@@ -1,0 +1,175 @@
+ALTER TABLE `show` CHANGE `title` `title` VARCHAR( 256 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+CHANGE `original_title` `original_title` VARCHAR( 512 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL ;
+
+ALTER TABLE `show` ADD `imdb_parsed` DATETIME NULL ;
+
+
+
+CREATE TABLE IF NOT EXISTS `custom_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `custom_category`
+--
+
+INSERT INTO `custom_category` (`id`, `category_id`, `name`) VALUES
+(1, 1, 'film'),
+(2, 2, 'šport'),
+(3, 3, 'verski program'),
+(4, 4, 'nadaljevanka'),
+(5, 4, 'nanizanka'),
+(6, 6, 'otroški in mladinski program'),
+(7, 7, 'informativni program'),
+(8, 8, 'dokumentarni program'),
+(9, 9, 'izobraževalni program'),
+(10, 10, 'kulturno-umetniški program'),
+(11, 11, 'razvedrilni program'),
+(12, 14, 'erotični program'),
+(13, 15, 'propagandni program');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `custom_category`
+--
+ALTER TABLE `custom_category`
+  ADD CONSTRAINT `custom_category_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+CREATE TABLE IF NOT EXISTS `custom_genre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `genre_id` int(11) DEFAULT NULL,
+  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `genre_id` (`genre_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=128 ;
+
+--
+-- Dumping data for table `custom_genre`
+--
+
+INSERT INTO `custom_genre` (`id`, `genre_id`, `name`) VALUES
+(1, 1, 'akcija'),
+(2, 2, 'animirani'),
+(3, 3, 'atletika'),
+(4, 4, 'avto-moto športi'),
+(5, 5, 'biografija'),
+(6, 6, 'dnevno-informativna oddaja'),
+(7, 7, 'dokumentarni'),
+(8, 8, 'domišljijski'),
+(9, 9, 'drama'),
+(10, 10, 'drsanje'),
+(11, 11, 'šport'),
+(12, 12, 'družboslovje'),
+(13, 13, 'družinski'),
+(14, 14, 'gimnastika'),
+(15, 15, 'glasba'),
+(16, 16, 'grozljivka'),
+(17, 17, 'hokej'),
+(18, 18, 'igre na srečo'),
+(19, 19, 'infokanal'),
+(20, 20, 'informativna oddaja'),
+(21, 21, 'intervju'),
+(22, 22, 'izobraževalna oddaja'),
+(23, 23, 'književnost'),
+(24, 24, 'komedija'),
+(25, 25, 'kontaktna oddaja'),
+(26, 26, 'košarka'),
+(27, 27, 'kratki'),
+(28, 28, 'kultura'),
+(29, 29, 'kviz'),
+(30, 31, 'naravoslovje'),
+(31, 32, 'nogomet'),
+(32, 33, 'politika'),
+(33, 34, 'omizje'),
+(34, 35, 'otroški ali mladinski'),
+(35, 37, 'plavanje'),
+(36, 38, 'ples'),
+(37, 39, 'pogovorna oddaja'),
+(38, 40, 'poljudnoznanstvena oddaja'),
+(39, 41, 'potopis'),
+(40, 42, 'predstava'),
+(41, 43, 'promet'),
+(42, 44, 'pustolovščina'),
+(43, 45, 'resničnostna oddaja'),
+(44, 46, 'risanka'),
+(45, 47, 'rokomet'),
+(46, 48, 'romantični'),
+(47, 49, 'smučanje'),
+(48, 50, 'smučarski skoki'),
+(49, 51, 'svetovalna oddaja'),
+(50, 52, 'tehnika'),
+(51, 53, 'tenis'),
+(52, 54, 'triler'),
+(53, 57, 'umetnost'),
+(54, 58, 'verska oddaja'),
+(55, 59, 'verski obred'),
+(56, 60, 'veslanje'),
+(57, 61, 'vestern'),
+(58, 62, 'vojni'),
+(59, 63, 'vreme'),
+(60, 64, 'vzgojna oddaja'),
+(61, 65, 'zabavna oddaja'),
+(62, 66, 'zgodovina'),
+(63, 68, 'znanstvena fantastika'),
+(64, 69, 'otroška oddaja'),
+(65, 71, 'kriminalka'),
+(66, 72, 'biatlon'),
+(67, 73, 'boks'),
+(68, 74, 'jadranje'),
+(69, 75, 'golf'),
+(70, 76, 'deskanje na snegu'),
+(71, 77, 'ameriški nogomet'),
+(72, 78, 'badminton'),
+(73, 79, 'ekstremni športi'),
+(74, 80, 'konjeništvo'),
+(75, 81, 'magazin'),
+(76, 82, 'motokros'),
+(77, 83, 'namizni tenis'),
+(78, 84, 'ragbi'),
+(79, 86, 'odbojka'),
+(80, 87, 'koncert'),
+(81, 88, 'kolesarstvo'),
+(82, 89, 'biljard'),
+(83, 90, 'borilni športi'),
+(84, 91, 'film'),
+(85, 92, 'formula 1'),
+(86, 93, 'gospodarstvo'),
+(87, 94, 'humoristični'),
+(88, 95, 'kuharska oddaja'),
+(89, 96, 'moda'),
+(90, 97, 'muzikal'),
+(91, 98, 'nadaljevanka'),
+(92, 99, 'nanizanka'),
+(93, 100, 'napovedniki'),
+(94, 101, 'oglasi'),
+(95, 102, 'opera'),
+(96, 103, 'ostalo'),
+(97, 104, 'poker'),
+(98, 105, 'prireditev'),
+(99, 106, 'proslava'),
+(100, 107, 'reportaža'),
+(101, 108, 'romantična komedija'),
+(102, 109, 'smučarski teki'),
+(103, 110, 'solska oddaja'),
+(104, 111, 'srhljivka'),
+(105, 112, 'telenovela'),
+(106, 113, 'tv prodaja'),
+(107, 114, 'vaterpolo');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `custom_genre`
+--
+ALTER TABLE `custom_genre`
+  ADD CONSTRAINT `custom_genre_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

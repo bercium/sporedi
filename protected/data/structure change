@@ -1,0 +1,4 @@
+SELECT 
+LEFT(`slug`, LENGTH(`slug`) - LOCATE('-', REVERSE(`slug`))),
+SUBSTRING_INDEX(`slug`, '-', -1), `slug`
+FROM `show` WHERE 1
