@@ -93,12 +93,6 @@
 		<?php echo $form->textField($model, 'imdb_verified'); ?>
 		<?php echo $form->error($model,'imdb_verified'); ?>
 		</div><!-- row -->
-		<div class="row">
-		<?php echo $form->labelEx($model,'trailer'); ?>
-		<?php echo $form->textField($model, 'trailer', array('maxlength' => 255)); ?>
-		<?php echo $form->error($model,'trailer'); ?>
-        </div><!-- row -->
-        
 
         <?php /* ?>
         <label><?php echo GxHtml::encode($model->getRelationLabel('schedules')); ?></label>

@@ -16,7 +16,6 @@
  * @property string $categories
  * @property string $channels
  * @property string $genres
- * @property string $subscribed
  *
  */
 abstract class BaseSubscriber extends GxActiveRecord {
@@ -43,9 +42,8 @@ abstract class BaseSubscriber extends GxActiveRecord {
 			array('email', 'length', 'max'=>255),
 			array('hash', 'length', 'max'=>32),
 			array('categories, channels, genres', 'length', 'max'=>500),
-			array('subscribed', 'safe'),
-			array('email, weekly_schedule, hash, categories, channels, genres, subscribed', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, email, weekly_schedule, hash, categories, channels, genres, subscribed', 'safe', 'on'=>'search'),
+			array('email, weekly_schedule, hash, categories, channels, genres', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, email, weekly_schedule, hash, categories, channels, genres', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +66,6 @@ abstract class BaseSubscriber extends GxActiveRecord {
 			'categories' => Yii::t('app', 'Categories'),
 			'channels' => Yii::t('app', 'Channels'),
 			'genres' => Yii::t('app', 'Genres'),
-			'subscribed' => Yii::t('app', 'Subscribed'),
 		);
 	}
 
@@ -82,7 +79,6 @@ abstract class BaseSubscriber extends GxActiveRecord {
 		$criteria->compare('categories', $this->categories, true);
 		$criteria->compare('channels', $this->channels, true);
 		$criteria->compare('genres', $this->genres, true);
-		$criteria->compare('subscribed', $this->subscribed, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

@@ -22,9 +22,6 @@
 	<?php echo GxHtml::encode($data->getAttributeLabel('year')); ?>:
 	<?php echo GxHtml::encode($data->year); ?>
 	<br />
-    <?php echo GxHtml::encode($data->getAttributeLabel('trailer')); ?>:
-	<?php echo GxHtml::encode($data->trailer); ?>
-	<br />
 	<?php /*
 	<?php echo GxHtml::encode($data->getAttributeLabel('custom_category_id')); ?>:
 		<?php echo GxHtml::encode(GxHtml::valueEx($data->customCategory)); ?>

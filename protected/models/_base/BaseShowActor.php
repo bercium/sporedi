@@ -44,8 +44,6 @@ abstract class BaseShowActor extends GxActiveRecord {
 
 	public function relations() {
 		return array(
-			'person' => array(self::BELONGS_TO, 'Person', 'person_id'),
-            'show' => array(self::BELONGS_TO, 'Show', 'show_id'),
 		);
 	}
 

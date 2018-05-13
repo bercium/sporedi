@@ -142,35 +142,6 @@ class UpdateCommand extends CConsoleCommand {
     public function actionForceschedule() {
         $this->actionSchedule(0, true);
     }
-    
-    
-    public function actionUpdatetrailers($inOffset = 0){
-        
-        $scheduleshows = Schedule::model()->with(array('show','show.customCategory'))
-                                    ->findAllByAttributes(array(), 
-                                                          array("condition"=>"day_date >= :date AND imdb_url IS NOT NULL AND imdb_url > '' AND imdb_verified = 1 AND category_id = 1 AND trailer IS NULL",
-                                                                'group'=>'`show`.title',
-                                                                /*'offset'=>$offset*200,*/
-                                                                'limit'=>200,
-                                                                'params' => array(':date'=>date('Y-m-d',strtotime('+0 day')))
-                                                                ));
-        $show_ids = [];
-        foreach ($scheduleshows as $ss) $show_ids[] = $ss->show->id;
-
-        ///if (count($show_ids) == 0)
-            
-        if (count($show_ids) > 0){
-            $shows = Show::model()->findAllByAttributes(array(), array('condition'=>'id IN ('.implode(',',$show_ids).')'));
-        
-            $trailer = new GeneralTrailerParser();
-
-            foreach ($shows as $show){
-                $show->trailer = $trailer->getTrailer($show->original_title, $show->imdb_url, $show->year);
-                echo $show->trailer."\n";
-                $show->update();
-            }
-        }
-    }
  
 
     //**************************************************************************

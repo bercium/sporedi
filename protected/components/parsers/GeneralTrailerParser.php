@@ -16,116 +16,41 @@ class GeneralTrailerParser {
     }
     
     
-    private function getMovieListTrailer($title, $imdb_url, $year){
-        $result = $url = '';
-        
-        $url_array[] = "https://www.movie-list.com/trailers/".toAscii($title,null,'');
-        $data = $this->getHtml($url_array[0],'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
-        if (strpos($data, "We don't have a movie by that name.") !== false){
-            $data = $this->getHtml("https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=10&hl=en&prettyPrint=false&source=gcsc&gss=.com&sig=0c3990ce7a056ed50667fe0c3873c9b6&cx=007044163952849960645:05jkpry20gg&sort=&googlehost=www.google.com&callback=google.search.Search.apiary14918&q=".urlencode(trim($title.' '.$year)),'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
-            //echo $data;
-            $json_data = json_decode('{'.cutOut($data,'({','});').'}', false);
-            if (count($json_data->results) > 0){
-                foreach ($json_data->results as $url){
-                    if (strpos($url->url, 'trailers') !== false) $url_array[] = $url->url;
-                }
-            }
-        }
-        
-        print_r($url_array);
-        foreach ($url_array as $url){
-            $data = $this->getHtml($url,'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
-            if (strpos($data, "We don't have a movie by that name.") !== false){
-                //echo "nomovie\n";
-                continue;
-            }
-            
-            $imdb_id = '';
-            if ($imdb_url){
-                $imdb_array = explode("/", $imdb_url);
-                $imdb_id = $imdb_array[count($imdb_array)-1];
-                if (!$imdb_id && count($imdb_array) > 1) $imdb_id = $imdb_array[count($imdb_array)-2];
-
-                // not found proper ID
-                
-                if (strpos($data, $imdb_id) === false){
-                    //echo "noid\n";
-                    continue;
-                }
-            }
-
-            if (strpos($data, "file:") === false) continue;
-
-            $result = cutOut(cutOut($data, "file:"), '"','"');
-            if (strpos($result,".mp4") === false) $result = '';
-        }
-        return $result;
-    }
-    
-    private function getTrailerAddictTrailer($title, $imdb_url, $year){
-        $result = $url = '';
-        
-        $url_array[] = "http://www.traileraddict.com/".toAscii($title);
-        $data = $this->getHtml($url_array[0],'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
-        
-        if (strpos($data, "Release:") !== false){
-            $data = $this->getHtml("http://www.traileraddict.com/".toAscii(trim($title.' '.$year)),'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
-            //echo $data;
-            
-            $data = cutOut($data, "result-list", '</ul>');
-            
-            while(strpos($data, '<li') !== false){
-                $data_mov = moveOut($data, '<li', '</li>');
-                $data = $data_mov['orig'];
-                $rowData = cutOut($data_mov['sub'], '>');
-                
-                $title = cutOut($rowData, 'title','</p>');
-                $date = cutOut($rowData, 'date','</p>');
-                if (strpos($date, $year) !== false){
-                    $url_array[] = "http://www.traileraddict.com/".cutOut($title, 'href="','"');
-                }
-            
-            }
-            
-        }
-        
-        print_r($url_array);
-        foreach ($url_array as $url){
-            $data = $this->getHtml($url,'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
-            if (strpos($data, "Release:") !== false){
-                //echo "nomovie\n";
-                continue;
-            }
-
-            //verify
-            $imdb_id = '';
-            if ($imdb_url){
-                $imdb_array = explode("/", $imdb_url);
-                $imdb_id = $imdb_array[count($imdb_array)-1];
-                if (!$imdb_id && count($imdb_array) > 1) $imdb_id = $imdb_array[count($imdb_array)-2];
-
-                // not found proper ID
-                
-                if (strpos($data, $imdb_id) === false){
-                    echo "noid\n";
-                    continue;
-                }
-            }
-
-            if (strpos($data, "file:") === false) continue;
-
-            $result = cutOut(cutOut($data, "file:"), '"','"');
-            if (strpos($result,".mp4") === false) $result = '';
-        }
-        return $result;
-    }
-    
     
     public function getTrailer($title, $imdb_url, $year){
-        echo $title." ".$year.": ".$imdb_url."\n";
+        $result = $url = '';
+        //$data = $this->getHtml("http://www.movie-list.com/search.php?q=",'Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/45.0');
+        //https://www.google.com/?q=site:www.movie-list.com+war+dogs
+        //https://www.google.com/search?q=site%3Awww.movie-list.com+war+dogs
+        //https://www.movie-list.com/trailers/wardogs
         
-        $result = $this->getMovieListTrailer($title, $imdb_url, $year);
-        //if ($result == '') $result = $this->getTrailerAddictTrailer($title, $imdb_url, $year);
+        $url = "https://www.movie-list.com/trailers/".toAscii($title,null,'');
+        $data = $this->getHtml($url,'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
+        
+        if (strpos($data, "We don't have a movie by that name.") !== false){
+            $data = $this->getHtml("https://www.google.com/search?q=site%3Awww.movie-list.com+".urlencode(trim($title.' '.$year)),'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
+            if (strpos($data, 'https://www.movie-list.com/trailers/') === false){
+                $data = $this->getHtml("http://www.movie-list.com/search.php?q=".urlencode(trim($title.' '.$year)),'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
+            }
+            if (strpos($data, 'https://www.movie-list.com/trailers/') !== false) $url = "https://www.movie-list.com/trailers/".cutOut($data, "https://www.movie-list.com/trailers/",'"');
+            else return $result;
+        }
+        
+        $data = $this->getHtml($url,'Mozilla/5.0 (Linux; U; Android 4.4.4; Nexus 5 Build/KTU84P) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
+        $imdb_id = '';
+        if ($imdb_url){
+            $imdb_array = explode("/", $imdb_url);
+            $imdb_id = $imdb_array[count($imdb_array)-1];
+            if (!$imdb_id && count($imdb_array) > 1) $imdb_id = $imdb_array[count($imdb_array)-2];
+
+            // not found proper ID
+            if (strpos($data, $imdb_id) === false) return $result;
+        }
+        
+        if (strpos($data, "file:") === false) return $result;
+
+        $result = cutOut(cutOut($data, "file:"), '"','"');
+        if (strpos($result,".mp4") === false) $result = '';
         
         
         return $result;

@@ -48,7 +48,6 @@ You may optionally enter a comparison operator (&lt;, &lt;=, &gt;, &gt;=, &lt;&g
 		'original_title',
 		'description',
 		'country',
-		'trailer',
 		/*
 		'year',
 		array(

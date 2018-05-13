@@ -44,6 +44,5 @@ array(
 'repaired',
 'imdb_parsed',
 'imdb_verified',
-'trailer',
 	),
 )); ?>

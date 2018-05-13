@@ -139,3 +139,6 @@ function setFav(channel, active) {
         expires: 365
     });
 }
+
+setTimeout(function () { ga('send', 'event', { eventCategory: 'Reading', eventAction: 'Viewed 5 Seconds+', eventLabel: 'Page: '+ location.pathname.toLowerCase() }); }, 5000);
+setTimeout(function () { ga('send', 'event', { eventCategory: 'Reading', eventAction: 'Viewed 15 Seconds+', eventLabel: 'Page: '+ location.pathname.toLowerCase() }); }, 15000);
