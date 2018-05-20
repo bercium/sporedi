@@ -404,6 +404,7 @@ EOD;
      */
     public function actionTrenutniSpored() {
         $favs = getFavs();
+        $favs_shows = "";
         if ($favs){
             $favs_shows = " IF(channel.slug IN (".$favs."),0,1), ";
             $favs = " IF(slug IN (".$favs."),0,1), ";
@@ -952,8 +953,8 @@ EOD;
             $search_partial = "%".$search."%";
             
             // regular search
-            $where .= ' AND (title LIKE :title OR original_title LIKE :title OR channel.name LIKE :title OR category.name = :category OR genre.name = :genre)';
-            $where_parameters = array_merge($where_parameters,array(":title" => $search_partial, ":category" => $search, ":genre" => $search));
+            $where .= ' AND (title LIKE :title OR original_title LIKE :title OR channel.name LIKE :title OR category.name = :category OR category.name = :category_partial OR genre.name = :genre)';
+            $where_parameters = array_merge($where_parameters,array(":title" => $search_partial, ":category" => $search, ":category_partial" => $search_partial, ":genre" => $search));
         }
         if ($datelimit){
             $where = "channel.active > 0 ".$where;
