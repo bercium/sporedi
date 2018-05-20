@@ -63,7 +63,7 @@ class CombinedNatgeoClass extends GeneralParser{
                 }else if (preg_match('/[, ]+Sezona +([0-9]+)/', $title, $matches)){
                     $singleData->season = $matches[1];
                     $subtitle = str_replace($matches[0], "", $subtitle);
-                }else if (preg_match('/[, ]+Epizoda +([0-9]+)/', $originalTitle, $matches)){
+                }else if (preg_match('/[, ]+Epizoda +([0-9]+)/', $title, $matches)){
                     $singleData->episode = $matches[1];
                     $subtitle = str_replace($matches[0], "", $subtitle);
                 }else $singleData->category = 'film';                
