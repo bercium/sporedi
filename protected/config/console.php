@@ -119,7 +119,7 @@ $a = array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>array('spored@sporedi.net'=>'TV Spored'),
-        'absoluteHost' => 'http://sporedi.net/',
+        'absoluteHost' => 'https://sporedi.net/',
         'coverPhotos'=>'uploads/covers/',
         'genresPhotos' => 'uploads/genres/',
         'categoriesPhotos' => 'uploads/categories/',

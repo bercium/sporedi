@@ -21,4 +21,4 @@ tv1000.si	FALSE	/	FALSE	1529129899	mobile_version	not_mobile
 .imdb.com	TRUE	/	FALSE	3645567192	session-token	CN2bZGQXAL9+bd+wqvusUE8vcWhSmdjg0kb5/56WyKNBKppB4dgc3UT2BISJS9ywY4Gu2ZDgV1PzvV9Km9cXyrdBSZuyL6zbNI9lMZJKW7CNsfQ1hi384eQnh2mOoKYfYmSVi1TmB6L1AK4p0AO7eluDwr4/Xx9cBD+Zrq61RkD8DlowBDVmHdZiIN6+rnZ4
 www.kolosej.si	FALSE	/	FALSE	1556770784	csrftoken	cRGnSNqclbzBFqDpyrNTC7VG4AMmOj8SRHnQ4jYRPwWgtqjw8ELmSaeVljzMIegi
 #HttpOnly_.movie-list.com	TRUE	/	TRUE	1558353917	__cfduid	defa30f5e68ceaa1dd1646a7c5b68bd461526817917
-#HttpOnly_.hbo.si	TRUE	/	FALSE	1526821668	PHPSESSID	so1k9egc7jq8scbj19kjtf1go5
+#HttpOnly_.hbo.si	TRUE	/	FALSE	1526825716	PHPSESSID	mcb1qmt1ihdvct07fbi8poask6

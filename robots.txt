@@ -1,10 +1,10 @@
  
 User-agent: *
-Sitemap: http://sporedi.net/sitemap
-Sitemap: http://sporedi.net/sitemap/0?type=actors
-Sitemap: http://sporedi.net/sitemap/0?type=directors
-Sitemap: http://sporedi.net/sitemap/0?type=shows
-Sitemap: http://sporedi.net/sitemap/1?type=actors
-Sitemap: http://sporedi.net/sitemap/1?type=shows
-Sitemap: http://sporedi.net/sitemap/2?type=actors
-Sitemap: http://sporedi.net/sitemap/2?type=shows
+Sitemap: https://sporedi.net/sitemap
+Sitemap: https://sporedi.net/sitemap/0?type=actors
+Sitemap: https://sporedi.net/sitemap/0?type=directors
+Sitemap: https://sporedi.net/sitemap/0?type=shows
+Sitemap: https://sporedi.net/sitemap/1?type=actors
+Sitemap: https://sporedi.net/sitemap/1?type=shows
+Sitemap: https://sporedi.net/sitemap/2?type=actors
+Sitemap: https://sporedi.net/sitemap/2?type=shows

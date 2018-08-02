@@ -166,7 +166,7 @@ $a = array(
                 // this is used in contact page
                 'version'=>'1.6.6',
                 'adminEmail'=>array('spored@sporedi.net'=>'TV Spored'),
-                'absoluteHost' => 'http://sporedi.net/',
+                'absoluteHost' => 'https://sporedi.net/',
 			    'mapsFolder'=>'data/',
 				'coverPhotos'=>'uploads/covers/',
                 'dataFolder'=>'uploads/maps/',

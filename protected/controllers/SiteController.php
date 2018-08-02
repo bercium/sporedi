@@ -92,7 +92,7 @@ class SiteController extends Controller {
         if (! isset($_SESSION['oauth_token'])) {
             // get the request token
             $reply = $cb->oauth_requestToken([
-              'oauth_callback' => 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']
+              'oauth_callback' => 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']
             ]);
 
             // store the token
@@ -321,19 +321,19 @@ EOD;
             if ($slug == 0){
                 $sitemapResponse .= "
                 <url>
-                  <loc>http://sporedi.net/</loc>
+                  <loc>https://sporedi.net/</loc>
                   <changefreq>daily</changefreq>
                   <priority>0.8</priority>
                   <lastmod>$curdate</lastmod>
                 </url>
                 <url>
-                  <loc>http://sporedi.net/priporocamo</loc>
+                  <loc>https://sporedi.net/priporocamo</loc>
                   <changefreq>daily</changefreq>
                   <priority>0.8</priority>
                   <lastmod>$curdate</lastmod>
                 </url>
                 <url>
-                  <loc>http://sporedi.net/iskanje</loc>
+                  <loc>https://sporedi.net/iskanje</loc>
                   <changefreq>monthly</changefreq>
                   <priority>0.8</priority>
                   <lastmod>$curdate</lastmod>

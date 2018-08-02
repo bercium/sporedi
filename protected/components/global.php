@@ -165,7 +165,7 @@ function short_url_bitly($url, $format='txt') {
 function add_http($link){
   //return $link;
   if ((strpos($link, "http://") === false) && (strpos($link, "https://") === false)){
-    return "http://".$link;
+    return "https://".$link;
   }
   return $link;
 }
@@ -304,8 +304,8 @@ function absoluteURL($url = ''){
   
   return Yii::app()->params['absoluteHost'];
   
-  if (!YII_TESTING) return 'http://sporedi.net'.$url;
-  else return 'http://sporedi.net'.$url;
+  if (!YII_TESTING) return 'https://sporedi.net'.$url;
+  else return 'https://sporedi.net'.$url;
   //$host = require(dirname(__FILE__) . '/../config/local-console-request.php');
   
   //echo $host;
@@ -964,7 +964,7 @@ function getBaseUrlSubdomain($absolute = false, $path = ''){
         $domain = Yii::app()->getBaseUrl($absolute);
         preg_match('/[\d]/', md5($path), $m);
         $num = isset($m[0]) ? $m[0] : 0;
-        $domain = str_replace("http://", "http://img".$num.".", $domain);
+        $domain = str_replace("https://", "https://img".$num.".", $domain);
         return $domain;
     }
 }

@@ -145,10 +145,10 @@
 {
   "@context": "http://schema.org",
   "@type": "WebSite",
-  "url": "http://sporedi.net/iskanje",
+  "url": "https://sporedi.net/iskanje",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "http://sporedi.net/iskanje?q={search_term_string}",
+    "target": "https://sporedi.net/iskanje?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
