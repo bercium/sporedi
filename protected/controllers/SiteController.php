@@ -431,7 +431,8 @@ EOD;
                               ->queryAll();
         $next_shows = array();
         foreach ($next as $show){
-          if (!isset($next_shows[$show['channel_id']])) $next_shows[$show['channel_id']] = $show;
+          //if (!isset($next_shows[$show['channel_id']])) 
+          $next_shows[$show['channel_id']] = $show;
         }
 
         $categories = Category::model()->findAll('id<>14 AND id<>15 AND id<>5 ORDER BY name');
