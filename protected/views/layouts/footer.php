@@ -3,7 +3,7 @@
     <div class="row">
       <div class="column small-12 text-center">
           <em><?php echo date('Y'); ?> &copy; Sporedi.net</em><?php /* ?>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="<?php echo Yii::app()->createUrl('site/zgodovina'); ?>">Pretekle oddaje</a><?php */ ?>
-          <?php if (isset(yii::app()->user) && yii::app()->user->isAdmin()){ ?>
+          <?php if (isset(Yii::app()->user) && Yii::app()->user->isAdmin()){ ?>
           </br><a href="/customCategory/admin">Custom categories</a>
            | <a href="/customGenre/admin">Custom genres</a>
            | <a href="/genre/admin">Genres</a>
