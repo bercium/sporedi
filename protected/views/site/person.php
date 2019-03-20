@@ -93,7 +93,7 @@
           <?php $i=1;
             foreach ($past_shows as $item){
 
-                echo $this->renderPartial('_item',array('item'=>$item, 'no_date'=>true, 'trk'=>'person_past_shows'));
+                echo $this->renderPartial('_item',array('item'=>$item, 'no_date'=>true, 'no_season' => true, 'trk'=>'person_past_shows'));
 
                 /*$i++;
                 if ($i == 3 || $i == 13 || $i == 25){

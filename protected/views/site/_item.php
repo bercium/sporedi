@@ -36,8 +36,8 @@
                 <?php 
                     $combined = [];
                     if (isset($item->show->customGenre->genre)) $combined[] = "<em>".$item->show->customGenre->genre->name."</em>"; 
-                    if ($item->show->season) $combined[] = $item->show->season.". sezona"; 
-                    if ($item->show->episode) $combined[] = $item->show->episode.". del"; 
+                    if (!$no_season && $item->show->season) $combined[] = $item->show->season.". sezona"; 
+                    if (!$no_season && $item->show->episode) $combined[] = $item->show->episode.". del"; 
                     if ($combined == []){
                         if (isset($item->show->customCategory->category)) $combined[] = $item->show->customCategory->category->name;
                         else $combined[] = '&nbsp;';
