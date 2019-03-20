@@ -85,8 +85,9 @@
                 }*/
             } ?>
         <?php } ?>
-              
-        <?php if ((isset($past_shows) && count($past_shows) == 0) && (isset($suggested) && count($suggested) > 0)){ ?>
+        
+              </br>
+        <?php if (isset($suggested) && count($suggested) > 0){ ?>
         <h3 class="mt30 mb20 text-center">Morda bi vas zanimalo</h3>
         <ul class="small-block-grid-1 medium-block-grid-3 mb10">
             <?php 
