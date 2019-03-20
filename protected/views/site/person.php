@@ -58,23 +58,7 @@
                 ?><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0534207295672567" data-ad-slot="9279402231" data-ad-format="auto"></ins><?php
             }
         }
-        }else{ ?>
-        <?php if (isset($suggested) && count($suggested) > 0){ ?>
-        <h3 class="mt30 mb20 text-center">Morda bi vas zanimalo tudi</h3>
-        <ul class="small-block-grid-1 medium-block-grid-3 mb10">
-            <?php 
-            $i=0; 
-            foreach ($suggested as $suggested_show){ 
-                $i++;
-                ?>
-			<li class="p5">
-			<?php echo $this->renderPartial('_card',array('item'=>$suggested_show, 'trk' => 'person_suggested', 'count'=>$i));	?>
-            </li>
-            <?php } ?>
-        </ul>
-        <?php } ?>
-        
-        <?php } ?>
+        } ?>
         
         <?php if (isset($past_shows) && count($past_shows) > 0){ ?>
           </br>
@@ -82,9 +66,9 @@
           </br>
           <?php if (!empty($type_of_person)){ ?>
             <?php if ($type_of_person == 'director'){ ?>
-              <h3>Režiral(a) je tudi</h3>
+              <h3>Režiral(a) je </h3>
             <?php }elseif ($type_of_person == 'actor'){ ?>
-              <h3>Igral(a) je tudi v</h3>
+              <h3>Igral(a) je v</h3>
             <?php }else{ ?>
               <h3>Pretekle oddaje</h3>
             <?php }
@@ -100,6 +84,22 @@
                     ?><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0534207295672567" data-ad-slot="9279402231" data-ad-format="auto"></ins><?php
                 }*/
             } ?>
+        <?php } ?>
+              
+              
+        <?php if (!(isset($past_shows) && count($past_shows) > 0) && (isset($suggested) && count($suggested) > 0)){ ?>
+        <h3 class="mt30 mb20 text-center">Morda bi vas zanimalo</h3>
+        <ul class="small-block-grid-1 medium-block-grid-3 mb10">
+            <?php 
+            $i=0; 
+            foreach ($suggested as $suggested_show){ 
+                $i++;
+                ?>
+			<li class="p5">
+			<?php echo $this->renderPartial('_card',array('item'=>$suggested_show, 'trk' => 'person_suggested', 'count'=>$i));	?>
+            </li>
+            <?php } ?>
+        </ul>
         <?php } ?>
     </div>
     
