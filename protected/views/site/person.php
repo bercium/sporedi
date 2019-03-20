@@ -22,7 +22,7 @@
 		</div>
         
         <h1><?php if (isset($person->name)) echo $person->name; ?></h1>
-        
+        </br>
         
         <div class="past-show-filler">
             <div class="hide-for-small pt30"></div>
@@ -33,6 +33,19 @@
             <br /><em><small class="subheader mt0">naloži starejše</small></em>
         </div>
         <?php 
+        if (count($schedule) > 0){ 
+        ?> 
+        <?php if (!empty($type_of_person)){ ?>
+            <?php if ($type_of_person == 'director'){ ?>
+              <h3>Odaje trenutno na sporedu, ki jih je režiral <?php if (isset($person->name)) echo $person->name; ?></h3>
+            <?php }elseif ($type_of_person == 'actor'){ ?>
+              <h3>Odaje z <?php if (isset($person->name)) echo $person->name; ?> trenutno na sporedu</h3>
+            <?php }else{ ?>
+              <h3>Oddaje trenutno na sporedu</h3>
+            <?php }
+          }?>
+        
+        <?php
         $i=1;
         foreach ($schedule as $item){ 
             $prev = strtotime($item->start." + ".$item->length." minutes") < time();
@@ -44,12 +57,10 @@
             if ($i == 3 || $i == 13 || $i == 25){
                 ?><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0534207295672567" data-ad-slot="9279402231" data-ad-format="auto"></ins><?php
             }
-        } ?>
-        <?php if (count($schedule) == 0){ ?>
-        <h3>Na žalost ne najdemo nobene oddaje s to osebo.</h3>
-        
+        }
+        }else{ ?>
         <?php if (isset($suggested) && count($suggested) > 0){ ?>
-        <h3 class="mt30 mb20 text-center">Morda bi vas zanimalo</h3>
+        <h3 class="mt30 mb20 text-center">Morda bi vas zanimalo tudi</h3>
         <ul class="small-block-grid-1 medium-block-grid-3 mb10">
             <?php 
             $i=0; 
@@ -63,6 +74,32 @@
         </ul>
         <?php } ?>
         
+        <?php } ?>
+        
+        <?php if (isset($past_shows) && count($past_shows) > 0){ ?>
+          </br>
+          
+          </br>
+          <?php if (!empty($type_of_person)){ ?>
+            <?php if ($type_of_person == 'director'){ ?>
+              <h3>Režiral(a) je tudi</h3>
+            <?php }elseif ($type_of_person == 'actor'){ ?>
+              <h3>Igral(a) je tudi v</h3>
+            <?php }else{ ?>
+              <h3>Pretekle oddaje</h3>
+            <?php }
+          }?>
+          
+          <?php $i=1;
+            foreach ($past_shows as $item){
+
+                echo $this->renderPartial('_item',array('item'=>$item, 'no_date'=>true, 'trk'=>'person_past_shows'));
+
+                /*$i++;
+                if ($i == 3 || $i == 13 || $i == 25){
+                    ?><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0534207295672567" data-ad-slot="9279402231" data-ad-format="auto"></ins><?php
+                }*/
+            } ?>
         <?php } ?>
     </div>
     

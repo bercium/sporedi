@@ -19,7 +19,7 @@
             <div class="hide-for-small show-item-image<?php if (isset($upcoming)) echo "-short"; ?>" style="background-image:url('<?php echo $image; ?>');"></div> <?php } ?>
             <h3 class="mb0 pt5 relative"><?php 
                 if (!empty($full_date)) echo dateToHuman($item->start)." ob ".Yii::app()->dateFormatter->formatDateTime(strtotime($item->start),null,"short");
-                else echo Yii::app()->dateFormatter->formatDateTime(strtotime($item->start),null,"short"); ?> 
+                else if (empty($no_date)) echo Yii::app()->dateFormatter->formatDateTime(strtotime($item->start),null,"short"); ?> 
                 <?php //if (isset($item->show->customCategory->category)){ ?>
                 <a href="<?php echo Yii::app()->createUrl('site/oddaja',array('slug'=>substr($item->show->slug, 0, strrpos($item->show->slug, "-")),
                                                                               'secondary'=>$item->id, 

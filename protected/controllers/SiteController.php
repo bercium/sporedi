@@ -570,14 +570,14 @@ EOD;
         }else $slug .= '-'.$slugpart;
         
         
-		$baseUrl = Yii::app()->baseUrl; 
-		$cs = Yii::app()->getClientScript();
-		$cs->registerScriptFile('https://addevent.com/libs/atc/1.6.1/atc.min.js');
-		$cs->registerScript("add_to_calendar_setup",'
-			window.addeventasync = function(){
-				addeventatc.settings({ css : false,	});
-			};
-		');
+        $baseUrl = Yii::app()->baseUrl; 
+        $cs = Yii::app()->getClientScript();
+        $cs->registerScriptFile('https://addevent.com/libs/atc/1.6.1/atc.min.js');
+        $cs->registerScript("add_to_calendar_setup",'
+          window.addeventasync = function(){
+            addeventatc.settings({ css : false,	});
+          };
+        ');
         $cs->registerScriptFile('https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.0/js.cookie.min.js');
         
 		
@@ -676,7 +676,11 @@ EOD;
   
         //header('Cache-Control: cache, private, must-revalidate, max-age=31536000');
         header("Last-Modified: " . gmdate("D, d M Y H:i:s", strtotime($show->modified)) . " GMT", true, 200);
-        header("Pragma: ");        
+        header("Pragma: ");
+        header("Link: <".Yii::app()->createAbsoluteUrl('site/oddaja', array('slug'=>substr($show->slug, 0, strrpos($show->slug, "-")),
+                                                                            'category'=>(isset($show->customCategory->category) ? $show->customCategory->category->slug : 'oddaja'),
+                                                                            'slugpart'=>substr($show->slug, strrpos($show->slug, "-")+1) 
+                                                                            )).">; rel=canonical");
         
         $this->render('show', array("show" => $show,'schedule'=> $schedule,"image"=>$image,
                       'whenAndWhere'=>$whenandwhere, 'reminder_title'=>$reminder_title, 'reminder_description' => $reminder_description,
@@ -693,6 +697,14 @@ EOD;
                                                           array("condition"=>"channel.active > 0 AND actors.slug = :personname AND start > :currenttime",
                                                                 //"order" => "channel.active, channel.name",
                                                                 "order" => "DATE_ADD(start, INTERVAL length MINUTE)",
+                                                                'params' => array(':personname'=>$slug,':currenttime'=>date('Y-m-d'))
+                                                                ), 
+                                                          array());
+        $schedule_past = Schedule::model()->with(array('channel', 'show', /*'show.customCategory', 'show.customCategory.category',*/ 'show.actors'))
+                                    ->findAllByAttributes(array(), 
+                                                          array("condition"=>"channel.active > 0 AND actors.slug = :personname AND start < :currenttime",
+                                                                //"order" => "channel.active, channel.name",
+                                                                "group" => "original_title LIMIT 10",
                                                                 'params' => array(':personname'=>$slug,':currenttime'=>date('Y-m-d'))
                                                                 ), 
                                                           array());
@@ -714,7 +726,12 @@ EOD;
             $suggested = $this->getRecomended();
         }
         
-        $this->render('person', array("schedule"=>$schedule, "channels" => $channels, 'person'=>$person, 'suggested'=>$suggested));
+        /*header("Link: <".Yii::app()->createAbsoluteUrl('site/oddaja', array('slug'=>substr($show->slug, 0, strrpos($show->slug, "-")),
+                                                                    'category'=>(isset($show->customCategory->category) ? $show->customCategory->category->slug : 'oddaja'),
+                                                                    'slugpart'=>substr($show->slug, strrpos($show->slug, "-")+1) 
+                                                                    )).">; rel=canonical"); */
+        
+        $this->render('person', array("schedule"=>$schedule, "channels" => $channels, 'person'=>$person, 'suggested'=>$suggested, 'past_shows'=>$schedule_past, 'type_of_person' => "actor"));
     }
     
     
@@ -730,6 +747,15 @@ EOD;
                                                                 'params' => array(':personname'=>$slug,':currenttime'=>date('Y-m-d'))
                                                                 ), 
                                                           array());
+        
+        $schedule_past = Schedule::model()->with(array('channel', 'show',  'show.directors'))
+                                    ->findAllByAttributes(array(), 
+                                                          array("condition"=>"channel.active > 0 AND directors.slug = :personname AND start < :currenttime",
+                                                                //"order" => "channel.active, channel.name",
+                                                                "group" => "original_title LIMIT 10",
+                                                                'params' => array(':personname'=>$slug,':currenttime'=>date('Y-m-d'))
+                                                                ), 
+                                                          array());        
         
         $favs = getFavs();
         if ($favs) $favs = " IF(slug IN (".$favs."),0,1), ";
@@ -749,7 +775,7 @@ EOD;
             $suggested = $this->getRecomended();
         }
         
-        $this->render('person', array("schedule"=>$schedule, "channels" => $channels, 'person'=>$person, 'suggested'=>$suggested));
+        $this->render('person', array("schedule"=>$schedule, "channels" => $channels, 'person'=>$person, 'suggested'=>$suggested, 'past_shows'=>$schedule_past, 'type_of_person' => "director"));
     }
     
     

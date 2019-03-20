@@ -17,10 +17,9 @@ tv1000.si	FALSE	/	FALSE	0	PHPSESSID	51dihcp0v984vksg6td25nqdj6
 .imdb.com	TRUE	/	FALSE	3645567192	session-token	CN2bZGQXAL9+bd+wqvusUE8vcWhSmdjg0kb5/56WyKNBKppB4dgc3UT2BISJS9ywY4Gu2ZDgV1PzvV9Km9cXyrdBSZuyL6zbNI9lMZJKW7CNsfQ1hi384eQnh2mOoKYfYmSVi1TmB6L1AK4p0AO7eluDwr4/Xx9cBD+Zrq61RkD8DlowBDVmHdZiIN6+rnZ4
 www.kolosej.si	FALSE	/	FALSE	1556770784	csrftoken	cRGnSNqclbzBFqDpyrNTC7VG4AMmOj8SRHnQ4jYRPwWgtqjw8ELmSaeVljzMIegi
 #HttpOnly_.movie-list.com	TRUE	/	TRUE	1558353917	__cfduid	defa30f5e68ceaa1dd1646a7c5b68bd461526817917
-#HttpOnly_.hbo.si	TRUE	/	FALSE	1543182588	PHPSESSID	o4gdcv0a5i4rnqvqm399ule3o7
-tv1000.si	FALSE	/	FALSE	1546059171	mobile_version	not_mobile
-viasatexplore.si	FALSE	/	FALSE	1546059191	mobile_version	not_mobile
-viasathistory.si	FALSE	/	FALSE	1546059238	mobile_version	not_mobile
-viasatnature.si	FALSE	/	FALSE	1546059417	mobile_version	not_mobile
 .hasbro.com	TRUE	/	FALSE	1574696018	visid_incap_1668753	57+yDxNiRSSzU9Rii8DQvV4N+1sAAAAAQUIPAAAAAACYxT/HIHKm2b9R+dMaY5Aj
 .hasbro.com	TRUE	/	FALSE	0	incap_ses_876_1668753	Q1NPS91JenuhtjaS7i0oDF4N+1sAAAAApF/VddTepbrL9FcWyaOfoQ==
+#HttpOnly_.hbo.si	TRUE	/	FALSE	1553090197	PHPSESSID	93t1afbhekujg0rnb99dp8m8f4
+tv1000.si	FALSE	/	FALSE	1555966706	mobile_version	not_mobile
+viasatexplore.si	FALSE	/	FALSE	1555966721	mobile_version	not_mobile
+viasathistory.si	FALSE	/	FALSE	1555966784	mobile_version	not_mobile
