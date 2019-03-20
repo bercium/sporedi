@@ -58,10 +58,10 @@
                 ?><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0534207295672567" data-ad-slot="9279402231" data-ad-format="auto"></ins><?php
             }
         }
+        echo "</br>";
         } ?>
         
         <?php if (isset($past_shows) && count($past_shows) > 0){ ?>
-          </br>
           
           </br>
           <?php if (!empty($type_of_person)){ ?>
@@ -86,9 +86,10 @@
             } ?>
         <?php } ?>
         
-              </br>
+             
         <?php if (isset($suggested) && count($suggested) > 0){ ?>
-        <h3 class="mt30 mb20 text-center">Morda bi vas zanimalo</h3>
+               </br>
+        <h3 class="mt30 mb20 text-center">Morda bi vas zanimalo tudi</h3>
         <ul class="small-block-grid-1 medium-block-grid-3 mb10">
             <?php 
             $i=0; 
