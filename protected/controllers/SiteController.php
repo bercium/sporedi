@@ -858,6 +858,13 @@ EOD;
         }else{
             $suggested = $this->getRecomended();
         }
+        
+        if (count($schedule) == 0){
+          header("Link: <".Yii::app()->createAbsoluteUrl('site/oddaja', array('slug'=>substr($show->slug, 0, strrpos($show->slug, "-")),
+                                                                              'category'=>(isset($show->customCategory->category) ? $show->customCategory->category->slug : 'oddaja'),
+                                                                              'slugpart'=>substr($show->slug, strrpos($show->slug, "-")+1) 
+                                                                              )).">; rel=canonical");
+        }
             
         $this->render('shows', array("schedule"=>$schedule, "channels" => $channels, "show"=>$show, 'suggested'=>$suggested));
     }
