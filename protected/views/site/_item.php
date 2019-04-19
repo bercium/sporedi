@@ -1,4 +1,5 @@
 <?php 
+   if (!isset($no_season)) $no_season = false;
     if (empty($channel_date)) $channel_date = dateToHuman($item->start, false, true);
 
     $image = imagePath($item->show->imdb_url, $item->show->title, (isset($item->show->customGenre->genre->slug) ? $item->show->customGenre->genre->slug : null), (isset($item->show->customCategory->category->slug) ? $item->show->customCategory->category->slug : ''));
