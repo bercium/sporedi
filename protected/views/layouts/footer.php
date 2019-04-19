@@ -8,7 +8,7 @@
            | <a href="/customGenre/admin">Custom genres</a>
            | <a href="/genre/admin">Genres</a>
            | <a href="/cahnnel/admin">Channel</a>
-          <?php } ?>
+          <?php  } ?>
       </div>
     </div>
 </div>
