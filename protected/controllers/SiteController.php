@@ -20,7 +20,7 @@ class SiteController extends Controller {
                         'class' => 'CViewAction',
                 ),
         );
-    }
+    } 
 
     
     /**
