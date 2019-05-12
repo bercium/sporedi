@@ -218,7 +218,7 @@
 					<span class="alarm_reminder">15</span>
 					<span class="date_format">YYYY-MM-DD</span>
 				</div> 
-			</li>
+			</li> 
             
                <?php if ($show){ ?>
                 <li><a href="<?php echo Yii::app()->createUrl('site/ponovnoNaSporedu',array('slug'=>substr($show->slug, 0, strrpos($show->slug, "-")),'slugpart'=>substr($show->slug, strrpos($show->slug, "-")+1))); ?>" class=" button radius secondary" style="margin-bottom: 2px;" trk="show_again-on-schedule_<?php echo $show->slug; ?>">
