@@ -678,7 +678,7 @@ EOD;
         header("Last-Modified: " . gmdate("D, d M Y H:i:s", strtotime($show->modified)) . " GMT", true, 200);
         header("Pragma: ");
         
-        if (strtotime($schedule->start) < time()){
+        if ($schedule && strtotime($schedule->start) < time()){
           header("Link: <".Yii::app()->createAbsoluteUrl('site/oddaja', array('slug'=>substr($show->slug, 0, strrpos($show->slug, "-")),
                                                                               'category'=>(isset($show->customCategory->category) ? $show->customCategory->category->slug : 'oddaja'),
                                                                               'slugpart'=>substr($show->slug, strrpos($show->slug, "-")+1) 
