@@ -811,8 +811,9 @@ EOD;
         
         $show = Show::model()->findByAttributes(array('slug' => $slug ));
         
-        
-        $schedule = Schedule::model()->with(array('channel', 'show', 'show.customCategory', 'show.customCategory.category'))
+        $schedule = null;
+        if ($show){
+          $schedule = Schedule::model()->with(array('channel', 'show', 'show.customCategory', 'show.customCategory.category'))
                                      ->findAllByAttributes(array(), 
                                                           array("condition"=>"show.original_title = :showname AND start > :currenttime",
                                                                 //"order" => "channel.active, channel.name",
@@ -820,6 +821,7 @@ EOD;
                                                                 'params' => array(':showname'=>$show->original_title,':currenttime'=>date('Y-m-d'))
                                                                 ), 
                                                           array());
+        }
         if (!$schedule){
         $schedule = Schedule::model()->with(array('channel', 'show', 'show.customCategory', 'show.customCategory.category'))
                                      ->findAllByAttributes(array(), 
