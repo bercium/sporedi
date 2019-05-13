@@ -168,11 +168,17 @@
 </IfModule>
 
 
-
-
 RewriteEngine on
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# ensure www.
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://sporedi.net/$1 [L,R=301]
+# ensure https
+RewriteCond  %{HTTPS} !=on [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
+#RewriteEngine on
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f

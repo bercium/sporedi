@@ -33,6 +33,7 @@
             <br /><em><small class="subheader mt0">naloži starejše</small></em>
         </div>
         <?php 
+        $iads = 1;
         if (count($schedule) > 0){ 
         ?> 
         <?php if (!empty($type_of_person)){ ?>
@@ -47,6 +48,7 @@
         
         <?php
         $i=1;
+        
         foreach ($schedule as $item){ 
             $prev = strtotime($item->start." + ".$item->length." minutes") < time();
             $curr = (strtotime($item->start." + ".$item->length." minutes") > time()) && (strtotime($item->start) < time());
@@ -58,6 +60,7 @@
                 ?><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0534207295672567" data-ad-slot="9279402231" data-ad-format="auto"></ins><?php
             }
         }
+        $iads = $i;
         echo "</br>";
         } ?>
         
@@ -107,13 +110,13 @@
 </div>
 
 <script>
-<?php if ($i > 24){ ?>
+<?php if ($iads > 24){ ?>
 (adsbygoogle = window.adsbygoogle || []).push({});
 <?php } ?>
-<?php if ($i > 12){ ?>
+<?php if ($iads > 12){ ?>
 (adsbygoogle = window.adsbygoogle || []).push({});
 <?php } ?>
-<?php if ($i > 2){ ?>
+<?php if ($iads > 2){ ?>
 (adsbygoogle = window.adsbygoogle || []).push({});
 <?php } ?>
 </script>
