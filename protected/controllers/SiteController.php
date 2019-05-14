@@ -798,21 +798,25 @@ EOD;
     /**
      * 
      */
-    public function actionPonovnoNaSporedu($slug, $slugpart=null) {
+    public function actionPonovnoNaSporedu($inSlug, $slugpart=null) {
         
-        $search = ucwords(str_replace("-", " ", $slug));
+        $search = ucwords(str_replace("-", " ", $inSlug));
         //redirect
         if ($slugpart == null){
-            $slugpart = substr($slug, strrpos($slug, "-")+1);
-            $slug = substr($slug, 0, strrpos($slug, "-"));
+            $slugpart = substr($inSlug, strrpos($inSlug, "-")+1);
+            $slug = substr($inSlug, 0, strrpos($inSlug, "-"));
             
             Yii::app()->getRequest()->redirect(Yii::app()->createAbsoluteUrl('site/ponovnoNaSporedu',array("slug"=>$slug, 'slugpart'=>$slugpart )) , true, 301);
-        }else $slug .= '-'.$slugpart;
+        }else $slug .= $inSlug.'-'.$slugpart;
         
         $show = Show::model()->findByAttributes(array('slug' => $slug ));
         
+        if (!$show){
+          $show = Show::model()->findByAttributes(array('slug' => $inSlug."" ));
+        }
+        
         $schedule = null;
-        if (isset($show->original_title)){
+        if ($show){
           $schedule = Schedule::model()->with(array('channel', 'show', 'show.customCategory', 'show.customCategory.category'))
                                      ->findAllByAttributes(array(), 
                                                           array("condition"=>"show.original_title = :showname AND start > :currenttime",
