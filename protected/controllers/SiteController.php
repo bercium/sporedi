@@ -798,8 +798,8 @@ EOD;
     /**
      * 
      */
-    public function actionPonovnoNaSporedu($inSlug, $slugpart=null) {
-        
+    public function actionPonovnoNaSporedu($slug, $slugpart=null) {
+        $inSlug = $slug;
         $search = ucwords(str_replace("-", " ", $inSlug));
         //redirect
         if ($slugpart == null){
@@ -807,12 +807,12 @@ EOD;
             $slug = substr($inSlug, 0, strrpos($inSlug, "-"));
             
             Yii::app()->getRequest()->redirect(Yii::app()->createAbsoluteUrl('site/ponovnoNaSporedu',array("slug"=>$slug, 'slugpart'=>$slugpart )) , true, 301);
-        }else $slug .= $inSlug.'-'.$slugpart;
+        }else $slug = $inSlug.'-'.$slugpart;
         
         $show = Show::model()->findByAttributes(array('slug' => $slug ));
         
         if (!$show){
-          $show = Show::model()->findByAttributes(array(), array("condition"=> 'slug LIKE "'.$inSlug.'%"', "LIMIT 1"));
+          $show = Show::model()->findByAttributes(array(), array("condition"=> 'slug LIKE "'.$inSlug.'%"'));
         }
         
         $schedule = null;

@@ -18,4 +18,9 @@ tv1000.si	FALSE	/	FALSE	0	PHPSESSID	51dihcp0v984vksg6td25nqdj6
 #HttpOnly_.movie-list.com	TRUE	/	TRUE	1558353917	__cfduid	defa30f5e68ceaa1dd1646a7c5b68bd461526817917
 .hasbro.com	TRUE	/	FALSE	1574696018	visid_incap_1668753	57+yDxNiRSSzU9Rii8DQvV4N+1sAAAAAQUIPAAAAAACYxT/HIHKm2b9R+dMaY5Aj
 .hasbro.com	TRUE	/	FALSE	0	incap_ses_876_1668753	Q1NPS91JenuhtjaS7i0oDF4N+1sAAAAApF/VddTepbrL9FcWyaOfoQ==
-#HttpOnly_.hbo.si	TRUE	/	FALSE	1557672531	PHPSESSID	9qls4qsath7r6e2sj7pf7rp8g0
+#HttpOnly_.hbo.si	TRUE	/	FALSE	1557824352	PHPSESSID	rh6kqcq5o9b37huqpr9oqn1v52
+tv1000.si	FALSE	/	FALSE	1560700876	mobile_version	not_mobile
+viasatexplore.si	FALSE	/	FALSE	1560700891	mobile_version	not_mobile
+viasathistory.si	FALSE	/	FALSE	1560700922	mobile_version	not_mobile
+viasatnature.si	FALSE	/	FALSE	1560701037	mobile_version	not_mobile
+#HttpOnly_.studio100.tv	TRUE	/	FALSE	1589357221	__cfduid	da7ff2c4d5243a0751ea04bbfe72b2fdc1557821221
