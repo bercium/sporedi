@@ -812,7 +812,7 @@ EOD;
         $show = Show::model()->findByAttributes(array('slug' => $slug ));
         
         if (!$show){
-          $show = Show::model()->findByAttributes(array('slug' => $inSlug."" ));
+          $show = Show::model()->findByAttributes(array(), array("condition"=> 'slug LIKE "'.$inSlug.'%"', "LIMIT 1"));
         }
         
         $schedule = null;
