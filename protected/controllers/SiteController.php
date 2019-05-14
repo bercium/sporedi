@@ -812,7 +812,7 @@ EOD;
         $show = Show::model()->findByAttributes(array('slug' => $slug ));
         
         $schedule = null;
-        if ($show){
+        if (isset($show->original_title)){
           $schedule = Schedule::model()->with(array('channel', 'show', 'show.customCategory', 'show.customCategory.category'))
                                      ->findAllByAttributes(array(), 
                                                           array("condition"=>"show.original_title = :showname AND start > :currenttime",
