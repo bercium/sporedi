@@ -35,8 +35,7 @@ class SiteController extends Controller {
         }
     }
     
-    
-     /**
+    /**
      * hide toolbar
      */
     protected function beforeAction($action) {
