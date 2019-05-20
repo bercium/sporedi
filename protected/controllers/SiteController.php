@@ -486,7 +486,8 @@ EOD;
         
         $channel = Channel::model()->findByAttributes(array("slug"=>$slug));
         
-        
+        if (!isset($channel)) Yii::app()->getRequest()->redirect(Yii::app()->createAbsoluteUrl('site/trenutniSpored',array()), true, 302);
+          
         if ($secondary != 'vceraj' && $secondary != 'danes' && $secondary != 'jutri' && strpos($secondary, '-') === false){
             $title = 'TV spored v '.$secondary.' na '.$channel->name;
             //$title = 'Spored '.$channel->name." - ".$secondary;
