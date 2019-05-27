@@ -16,6 +16,7 @@ class CombinedSloveniaClass extends GeneralParser{
         $htmlData = str_replace("*****", "", $htmlData);
         
         $json = json_decode($htmlData);
+        if (!isset($json->response)) return [];
         $json = $json->response;
         
         $data = [];
