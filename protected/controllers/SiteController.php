@@ -35,6 +35,7 @@ class SiteController extends Controller {
         }
     }
     
+    
     /**
      * hide toolbar
      */
