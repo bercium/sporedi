@@ -53,7 +53,7 @@ class SiteController extends Controller {
      * Displays the login page
      */
     public function actionLogin() {
-        $model = new LoginForm;
+        $model  = new LoginForm; 
 
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
